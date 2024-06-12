@@ -45,7 +45,7 @@ class _ChatPageState extends State<MessageTab2> {
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(200, 200, 200, 255),
+          color: const Color.fromARGB(255, 255, 255, 255),
           image: DecorationImage(
             image: AssetImage('assets/dietLogo.png'),
             

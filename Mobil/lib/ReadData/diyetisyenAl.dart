@@ -86,7 +86,7 @@ class DiyetisYenAl extends StatelessWidget {
 
 
           //---------------PUAN TABLOSU OLAYI ---------------------------------
-          ref.child("reviews").get().then((value) {
+         ref.child("reviews").get().then((value) {
             Map data = value.value as Map;
 
             data.forEach((key, value) {
@@ -103,9 +103,11 @@ class DiyetisYenAl extends StatelessWidget {
               if(iterate != 0) {
                 puanTable[key] = puan / iterate;
               }
+              print("Puan Tablsou" + puanTable[key].toString());
             });
 
           });
+          print("PUAN TABLOSU:" + puanTable.toString());
           //----------------------------------------------------------
 
 
@@ -162,7 +164,7 @@ class DiyetisYenAl extends StatelessWidget {
                           for(int i=0;i<diyetisyenlerMevcut.length;i++)
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 8),
-                              child: Text(diyetisyenlerMevcut[i]["ucret"]),
+                              child: Text((diyetisyenlerMevcut[i]["puan"] == null) ? "-" :  diyetisyenlerMevcut[i]["puan"].toString() ),
                             ),
                         ],
                       ),
@@ -239,7 +241,7 @@ class DiyetisYenAl extends StatelessWidget {
                       for(int i=0;i<mevcutOlmayandiyetisyenler.length;i++)
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15.0,horizontal: 8),
-                          child: Text(mevcutOlmayandiyetisyenler[i]["ucret"]),
+                          child: Text((mevcutOlmayandiyetisyenler[i]["puan"] == null) ? "-" :  mevcutOlmayandiyetisyenler[i]["puan"].toString() ),
                         ),
                     ],
                   ),

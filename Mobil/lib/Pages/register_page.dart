@@ -37,24 +37,47 @@ class _RegisterPageState extends State<RegisterPage> {
   Future signUp() async {
     if(passwordConfirmed()) {
       //User create
-      user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: email_controller.text.trim(),
-          password: password_controller.text.trim()
-      );
-      //Add user details
-      try{
-      addUserDetails(
-        firstName_controller.text.trim(),
-        lastName_controller.text.trim(),
-        email_controller.text.trim(),
-          int.parse(age_controller.text.toString()));
+      try {
+        user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: email_controller.text.trim(),
+            password: password_controller.text.trim()
+        );
+        //Add user details
+        try {
+          addUserDetails(
+              firstName_controller.text.trim(),
+              lastName_controller.text.trim(),
+              email_controller.text.trim(),
+              int.parse(age_controller.text.toString()));
+        }
+        catch (e) {
+          showDialog(context: context, builder: (context) {
+            return AlertDialog(
+              content: Text("Yaşınız sadece rakamdan ibaret olmalıdır"),
+            );
+          });
+        }
       }
-      catch(e){
-        showDialog(context: context, builder: (context){
-          return AlertDialog(
-            content: Text("Yaşınız sadece rakamdan ibaret olmalıdır"),
-          );
-        });
+      catch (e) {
+        print("Giriş Başarısız : {$e}");
+        Navigator.of(context).pop();
+        showDialog(
+            context: context,
+            builder: (BuildContext context){
+
+              return AlertDialog(
+                title: Text("Kayıt Yapılamadı"),
+                content: Text("Bu eposta kullanılıyor veya geçersiz olabilir"),
+                actions: [
+                  TextButton(
+                      onPressed: (){
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("Tamam"))
+                ],
+              );
+            });
+
       }
 
 

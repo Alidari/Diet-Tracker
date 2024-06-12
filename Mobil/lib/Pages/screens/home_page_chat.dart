@@ -60,13 +60,13 @@ class _UserListPageState extends State<UserListPage> {
       });
 
      return ListView.builder(
-  itemCount: convertedUsers.length,
-  itemBuilder: (context, index) {
-    String uid = convertedUsers.keys.elementAt(index);
-    Map<String, dynamic> userData = convertedUsers[uid]!;
-    String userName = userData['name'] ?? '';
-    String userLastName = userData['lastname'] ?? '';
-    String usereceiverID = uid;
+      itemCount: convertedUsers.length,
+      itemBuilder: (context, index) {
+        String uid = convertedUsers.keys.elementAt(index);
+        Map<String, dynamic> userData = convertedUsers[uid]!;
+        String userName = userData['name'] ?? '';
+        String userLastName = userData['lastname'] ?? '';
+        String usereceiverID = uid;
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       child: Card(

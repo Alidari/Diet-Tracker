@@ -27,6 +27,7 @@ class _DiyetisyenSayfaState extends State<DiyetisyenSayfa> {
   final user = FirebaseAuth.instance.currentUser!;
   late final String userId;
   late final userName;
+  late final userSurName;
   @override
   void initState() {
     userId = user.uid;
@@ -48,6 +49,7 @@ class _DiyetisyenSayfaState extends State<DiyetisyenSayfa> {
     refUser.child(userId).get().then((value) {
       Map data = value.value as Map;
       userName = data["name"];
+      userSurName = data["lastname"];
     }
     );
   }
@@ -91,6 +93,7 @@ class _DiyetisyenSayfaState extends State<DiyetisyenSayfa> {
       refReview.child(widget.diyetisyenID).child(userId).update({
         "Doktor" : widget.diyetisyenID.toString(),
         "Hasta" : userName.toString(),
+        "Hasta Soyadı" : userSurName.toString(),
         "Yorum" : yorum.toString(),
         "Puan" : starControl.toString()
       });
